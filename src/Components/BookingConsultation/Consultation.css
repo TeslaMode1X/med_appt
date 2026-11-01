@@ -1,0 +1,55 @@
+/* Shared styles for the Instant Consultation and Booking Consultation flows */
+.consult { padding: 1rem 0 3rem; }
+.search { max-width: 640px; margin: 0 auto 2rem; position: relative; }
+.search__box { display: flex; gap: 0.5rem; }
+.search__box .form-control { flex: 1; }
+.search__results {
+  position: absolute;
+  left: 0; right: 0;
+  top: calc(100% + 4px);
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  list-style: none;
+  margin: 0;
+  padding: 0.4rem 0;
+  max-height: 260px;
+  overflow-y: auto;
+  z-index: 20;
+}
+.search__results li { display: flex; justify-content: space-between; padding: 0.6rem 1rem; cursor: pointer; }
+.search__results li:hover { background: var(--primary-light); }
+.search__results li span { color: var(--muted); font-size: 0.85rem; }
+.search__hint { text-align: center; color: var(--muted); margin-top: 0.5rem; }
+
+.doctor-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.25rem; }
+.doctor-card { display: flex; flex-direction: column; gap: 0.75rem; }
+.doctor-card__head { display: flex; gap: 1rem; align-items: center; }
+.doctor-card__avatar {
+  width: 64px; height: 64px; border-radius: 50%;
+  background: var(--primary-light); color: var(--primary-dark);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 1.3rem; flex-shrink: 0;
+}
+.doctor-card__name { font-size: 1.1rem; color: var(--primary-dark); }
+.doctor-card__meta { color: var(--muted); font-size: 0.92rem; margin: 0.1rem 0; }
+.doctor-card__ratings { color: var(--accent); font-weight: 600; }
+.doctor-card__footer { margin-top: auto; }
+.doctor-card .btn { width: 100%; }
+.booked-note { background: #e6f6ec; color: #1f8a4c; padding: 0.6rem 0.9rem; border-radius: 8px; font-size: 0.9rem; }
+
+.modal-backdrop {
+  position: fixed; inset: 0; background: rgba(15, 30, 35, 0.45);
+  display: flex; align-items: center; justify-content: center; z-index: 70; padding: 1rem;
+}
+.modal { width: 100%; max-width: 460px; max-height: 90vh; overflow-y: auto; }
+.modal__head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
+.modal__close { background: none; border: none; font-size: 1.4rem; cursor: pointer; color: var(--muted); }
+.slot-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+.slot {
+  padding: 0.5rem; border: 1px solid var(--border); border-radius: 8px;
+  background: #fff; cursor: pointer; font-size: 0.9rem; font-family: inherit;
+}
+.slot.selected, .slot:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+.appointment-summary p { margin: 0.25rem 0; }

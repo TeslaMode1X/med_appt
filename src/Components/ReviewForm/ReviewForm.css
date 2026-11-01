@@ -1,0 +1,5 @@
+.reviews { padding: 1rem 0 3rem; }
+.review-form .stars { display: flex; gap: 0.3rem; }
+.review-form .star { background: none; border: none; font-size: 1.7rem; cursor: pointer; color: #cfd8dc; padding: 0; }
+.review-form .star.on { color: var(--accent); }
+.review-given { color: var(--muted); font-style: italic; }

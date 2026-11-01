@@ -1,0 +1,9 @@
+$ curl -X POST http://localhost:8181/api/auth/register -H "Content-Type: application/json" -d '{"name":"Anuar Musljumov","email":"anuar.musljumov@gmail.com","password":"Secret123","phone":"7012345678","role":"Patient"}'
+{"authtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoibXZ4dHR1NGwiLCJlbWFpbCI6ImFudWFyLm11c2xqdW1vdkBnbWFpbC5jb20ifSwiaWF0IjoxNzkzNTM3MzQ3LCJleHAiOjE3OTM2MjM3NDd9.EqspiUiPvwn20PDTLv_HJOReXVCHtkQsE0qI0kiBN7k","id":"mvxttu4l","name":"Anuar Musljumov","email":"anuar.musljumov@gmail.com","phone":"7012345678","role":"Patient","createdAt":"2026-11-01T12:49:07.345Z"}
+
+$ curl -X POST http://localhost:8181/api/auth/register -H "Content-Type: application/json" -d '{"name":"Dr. Jiao Yang","email":"jiao.yang@stayhealthy.org","password":"Doctor123","phone":"7098765432","role":"Doctor"}'
+{"authtoken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoibXZ4dHR1NnoiLCJlbWFpbCI6ImppYW8ueWFuZ0BzdGF5aGVhbHRoeS5vcmcifSwiaWF0IjoxNzkzNTM3MzQ3LCJleHAiOjE3OTM2MjM3NDd9.cowyklESWuCcD_K-yQfqtT46OVxLAwLTMTlbo1HM0FU","id":"mvxttu6z","name":"Dr. Jiao Yang","email":"jiao.yang@stayhealthy.org","phone":"7098765432","role":"Doctor","createdAt":"2026-11-01T12:49:07.422Z"}
+
+$ curl -X POST http://localhost:8181/api/auth/register -H "Content-Type: application/json" -d '{"name":"Anuar Musljumov","email":"anuar.musljumov@gmail.com","password":"Secret123","phone":"7012345678","role":"Patient"}'
+# (same email a second time - rejected)
+{"errors":[{"msg":"A user with this email already exists","param":"email"}]}

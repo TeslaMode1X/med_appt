@@ -1,0 +1,9 @@
+.auth-page { display: flex; justify-content: center; padding: 3rem 1rem; }
+.auth-card { width: 100%; max-width: 480px; }
+.auth-card h1 { text-align: center; color: var(--primary-dark); }
+.auth-card .helper-text { text-align: center; margin-bottom: 1.5rem; }
+.auth-actions { display: flex; gap: 0.75rem; margin-top: 1.5rem; }
+.auth-actions .btn { flex: 1; }
+.form-alert { padding: 0.75rem 1rem; border-radius: 8px; margin-bottom: 1rem; font-size: 0.95rem; }
+.form-alert--error { background: #fdecec; color: var(--danger); }
+.form-alert--success { background: #e6f6ec; color: #1f8a4c; }
