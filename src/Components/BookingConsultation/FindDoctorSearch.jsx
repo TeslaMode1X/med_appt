@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { specialities } from '../../data/doctors';
 
 // Search box with a suggestions dropdown. Typing filters the list of
@@ -8,7 +8,9 @@ import { specialities } from '../../data/doctors';
 // Booking Consultation screen reads the query string and lists matching doctors.
 function FindDoctorSearch({ resultsPath = '/booking-consultation', placeholder = 'Search doctors, clinics, hospitals, etc.' }) {
   const navigate = useNavigate();
-  const [query, setQuery] = useState('');
+  const [searchParams] = useSearchParams();
+  // Pre-fill the box when the page is opened with ?speciality=... already set.
+  const [query, setQuery] = useState(searchParams.get('speciality') || '');
   const [open, setOpen] = useState(false);
 
   const matches = specialities.filter((s) =>

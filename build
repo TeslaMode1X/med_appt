@@ -11,8 +11,8 @@ rendering chunks...
 computing gzip size...
 server/build/index.html                   2.42 kB │ gzip:  0.86 kB
 server/build/assets/index-CKRJweHC.css   10.02 kB │ gzip:  2.74 kB
-server/build/assets/index-D0LYE9Vg.js   201.42 kB │ gzip: 62.21 kB
-✓ built in 460ms
+server/build/assets/index-Cmb9DgKT.js   201.45 kB │ gzip: 62.24 kB
+✓ built in 466ms
 
 $ ls -R server/build
 404.html
@@ -23,4 +23,4 @@ patient_report.pdf
 
 server/build/assets:
 index-CKRJweHC.css
-index-D0LYE9Vg.js
+index-Cmb9DgKT.js
