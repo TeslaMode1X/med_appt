@@ -1,11 +1,11 @@
-# StayHealthy
+# Medical Appointment Booking (StayHealthy)
 
-Front-end of **StayHealthy**, a (fictitious) non-profit healthcare platform whose *Go Digital* initiative connects patients in remote and underserved areas with doctors anytime, from anywhere.
+**Project name:** Medical Appointment Booking - front-end of **StayHealthy**, a (fictitious) non-profit healthcare platform whose *Go Digital* initiative connects patients in remote and underserved areas with doctors anytime, from anywhere.
 
 Built for the IBM *Front-End Developer* capstone with **React 18**, **React Router 6** and **Vite**, plus a small **Express** authentication API.
 
-- Live site: https://teslamode1x.github.io/stayhealthy/
-- Repository: https://github.com/TeslaMode1X/stayhealthy
+- Live site: https://teslamode1x.github.io/med_appt/
+- Repository: https://github.com/TeslaMode1X/med_appt
 
 ## Features
 
@@ -27,8 +27,8 @@ Built for the IBM *Front-End Developer* capstone with **React 18**, **React Rout
 Requires Node.js 18 or newer.
 
 ```bash
-git clone https://github.com/TeslaMode1X/stayhealthy.git
-cd stayhealthy
+git clone https://github.com/TeslaMode1X/med_appt.git
+cd med_appt
 npm install            # front-end dependencies
 npm --prefix server install   # API dependencies
 ```
@@ -37,7 +37,7 @@ Run the API and the front-end in two terminals:
 
 ```bash
 npm run server         # StayHealthy API on http://localhost:8181
-npm run dev            # Vite dev server, usually http://localhost:5173/stayhealthy/
+npm run dev            # Vite dev server, usually http://localhost:5173/med_appt/
 ```
 
 The front-end reads the API base URL from `src/config.js` (`VITE_API_URL`, default `http://localhost:8181`).
@@ -46,12 +46,12 @@ Users are stored in `server/data/users.json`, so no database is needed.
 ### Production build and deployment
 
 ```bash
-npm run build          # outputs to dist/ (output saved in the `build` file)
+npm run build          # outputs to server/build/ (output saved in the `build` file)
 npm run preview        # serve the production build locally
 ```
 
-The site is deployed to GitHub Pages from the `gh-pages` branch, which contains the `dist/` folder.
-`vite.config.js` sets `base: '/stayhealthy/'` so assets resolve under the Pages sub-path, and
+The site is deployed to GitHub Pages from the `gh-pages` branch, which contains the `server/build/` folder.
+`vite.config.js` sets `base: '/med_appt/'` so assets resolve under the Pages sub-path, and
 `404.html` is a copy of `index.html` so deep links work with React Router.
 
 ## API
@@ -68,10 +68,11 @@ Sample calls and their output are in the `register` and `login` files.
 ## Project structure
 
 ```
-stayhealthy/
+med_appt/
 ├── index.html                 # entry page with SEO meta tags
 ├── public/patient_report.pdf  # sample patient report served by Reports
-├── server/index.js            # Express authentication API
+├── server/index.js            # Express authentication API (also serves server/build)
+├── server/build/              # production build (npm run build)
 ├── screenshots/               # design and feature screenshots (PNG)
 ├── build                      # terminal output of the production build
 ├── register, login            # cURL commands + output for the auth API
@@ -103,7 +104,7 @@ stayhealthy/
 | Login form design | `screenshots/login_form_design.png`, `src/Components/Login/Login.jsx` |
 | Registration / login API calls | `Sign_Up.jsx`, `Login.jsx` (`fetch` to `API_URL`) |
 | Logout | `Navbar.jsx` (`handleLogout`) |
-| Doctor search | `src/Components/BookingConsultation/FindDoctorSearch.jsx` |
+| Doctor search | `src/Components/BookingConsultation/FindDoctorSearch.jsx` (navigates to `/booking-consultation?speciality=...`) |
 | App-wide notification | `src/App.jsx` wraps routes in `<Notification>` |
 | Instant form (name + phone only) | `src/Components/InstantConsultationBooking/AppointmentFormIC.jsx` |
 | Reviews form + disabling | `src/Components/ReviewForm/GiveReviews.jsx` |

@@ -1,12 +1,12 @@
 {
-  "name": "stayhealthy",
+  "name": "med_appt",
   "private": true,
   "version": "1.0.0",
-  "description": "StayHealthy - front-end of a non-profit healthcare platform that connects patients with doctors anytime, anywhere (IBM Front-End Developer Capstone)",
+  "description": "Medical Appointment Booking (StayHealthy) - front-end of a non-profit healthcare platform that connects patients with doctors anytime, anywhere (IBM Front-End Developer Capstone)",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && cp dist/index.html dist/404.html",
+    "build": "vite build && cp server/build/index.html server/build/404.html",
     "preview": "vite preview",
     "server": "node server/index.js"
   },

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import FindDoctorSearch from './FindDoctorSearch';
 import DoctorCard from './DoctorCard';
@@ -7,14 +6,11 @@ import './Consultation.css';
 
 // "Book an Appointment" screen: search by speciality, then book a dated slot.
 function BookingConsultation() {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [searched, setSearched] = useState(Boolean(searchParams.get('speciality')));
+  // FindDoctorSearch navigates to ?speciality=<value>; the list below is
+  // derived from that query string, so results survive reloads and sharing.
+  const [searchParams] = useSearchParams();
+  const searched = searchParams.has('speciality');
   const speciality = searchParams.get('speciality') || '';
-
-  const handleSearch = (value) => {
-    setSearched(true);
-    setSearchParams(value ? { speciality: value } : {});
-  };
 
   const results = speciality
     ? doctors.filter((d) => d.speciality.toLowerCase().includes(speciality.toLowerCase()))
@@ -22,7 +18,7 @@ function BookingConsultation() {
 
   return (
     <div className="container consult">
-      <FindDoctorSearch onSearch={handleSearch} />
+      <FindDoctorSearch />
       {searched && (
         <>
           <h2 className="page-title" style={{ fontSize: '1.3rem' }}>

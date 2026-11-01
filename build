@@ -1,26 +1,26 @@
 $ npm run build
 
 
-> stayhealthy@1.0.0 build
-> vite build && cp dist/index.html dist/404.html
+> med_appt@1.0.0 build
+> vite build && cp server/build/index.html server/build/404.html
 
 vite v5.4.21 building for production...
 transforming...
 ✓ 64 modules transformed.
 rendering chunks...
 computing gzip size...
-dist/index.html                   2.32 kB │ gzip:  0.86 kB
-dist/assets/index-CKRJweHC.css   10.02 kB │ gzip:  2.74 kB
-dist/assets/index-Ciy95Xg4.js   201.29 kB │ gzip: 62.16 kB
-✓ built in 464ms
+server/build/index.html                   2.42 kB │ gzip:  0.86 kB
+server/build/assets/index-CKRJweHC.css   10.02 kB │ gzip:  2.74 kB
+server/build/assets/index-D0LYE9Vg.js   201.42 kB │ gzip: 62.21 kB
+✓ built in 460ms
 
-$ ls -R dist
+$ ls -R server/build
 404.html
 assets
 favicon.svg
 index.html
 patient_report.pdf
 
-dist/assets:
+server/build/assets:
 index-CKRJweHC.css
-index-Ciy95Xg4.js
+index-D0LYE9Vg.js

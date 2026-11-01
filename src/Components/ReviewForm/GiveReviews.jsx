@@ -8,7 +8,10 @@ function GiveReviews({ doctor, onSubmitted }) {
   const [review, setReview] = useState('');
   const [rating, setRating] = useState(0);
   const [errors, setErrors] = useState({});
-  const [submitted, setSubmitted] = useState(false);
+  // reviewData stays null until the form is submitted; once set, the form is
+  // disabled and the saved review is rendered instead of the empty state.
+  const [reviewData, setReviewData] = useState(null);
+  const submitted = reviewData !== null;
 
   const validate = () => {
     const next = {};
@@ -22,8 +25,10 @@ function GiveReviews({ doctor, onSubmitted }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (submitted || !validate()) return;
-    setSubmitted(true);
-    onSubmitted({ doctorId: doctor.id, name: name.trim(), review: review.trim(), rating });
+    // Save the submitted review in state and hand it to the parent list.
+    const data = { doctorId: doctor.id, name: name.trim(), review: review.trim(), rating };
+    setReviewData(data);
+    onSubmitted(data);
   };
 
   return (
@@ -61,7 +66,13 @@ function GiveReviews({ doctor, onSubmitted }) {
       <button type="submit" className="btn" disabled={submitted}>
         {submitted ? 'Review Submitted' : 'Submit'}
       </button>
-      {submitted && <div className="success-text">Thank you! Your feedback has been recorded.</div>}
+      {reviewData ? (
+        <div className="success-text">
+          Thank you, {reviewData.name}! Your {reviewData.rating}-star review has been recorded.
+        </div>
+      ) : (
+        <p className="helper-text" style={{ marginTop: '0.75rem' }}>Your feedback helps other patients choose a doctor.</p>
+      )}
     </form>
   );
 }

@@ -7,6 +7,7 @@
  *   PUT  /api/auth/user      headers as above, body { name, phone }  -> updated user
  *
  * Users are stored in server/data/users.json so the API runs without a database.
+ * When server/build exists (npm run build), the React app is served from it too.
  */
 import express from 'express';
 import cors from 'cors';
@@ -19,6 +20,7 @@ import { fileURLToPath } from 'node:url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DATA_DIR = join(__dirname, 'data');
 const DATA_FILE = join(DATA_DIR, 'users.json');
+const BUILD_DIR = join(__dirname, 'build');
 const PORT = process.env.PORT || 8181;
 const JWT_SECRET = process.env.JWT_SECRET || 'stayhealthy-dev-secret';
 
@@ -70,7 +72,7 @@ function authenticate(req, res, next) {
 }
 
 /* ---------- routes ---------- */
-app.get('/', (_req, res) => res.json({ status: 'ok', service: 'StayHealthy API' }));
+app.get('/api', (_req, res) => res.json({ status: 'ok', service: 'StayHealthy API' }));
 
 app.post('/api/auth/register', async (req, res) => {
   const { name = '', email = '', password = '', phone = '', role = 'Patient' } = req.body || {};
@@ -142,6 +144,13 @@ app.put('/api/auth/user', authenticate, (req, res) => {
   saveUsers(users);
   res.json(publicUser(user));
 });
+
+/* ---------- static front-end (production build) ---------- */
+if (existsSync(BUILD_DIR)) {
+  app.use('/med_appt', express.static(BUILD_DIR));
+  app.get('/med_appt/*', (_req, res) => res.sendFile(join(BUILD_DIR, 'index.html')));
+  app.get('/', (_req, res) => res.redirect('/med_appt/'));
+}
 
 app.listen(PORT, () => {
   console.log(`StayHealthy API listening on http://localhost:${PORT}`);

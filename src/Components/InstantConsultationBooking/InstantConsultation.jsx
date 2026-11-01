@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import FindDoctorSearchIC from './FindDoctorSearchIC';
 import DoctorCardIC from './DoctorCardIC';
@@ -7,14 +6,11 @@ import '../BookingConsultation/Consultation.css';
 
 // "Instant Consultation" screen: search by speciality and consult right away.
 function InstantConsultation() {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [searched, setSearched] = useState(Boolean(searchParams.get('speciality')));
+  // FindDoctorSearch navigates to ?speciality=<value>; the list below is
+  // derived from that query string, so results survive reloads and sharing.
+  const [searchParams] = useSearchParams();
+  const searched = searchParams.has('speciality');
   const speciality = searchParams.get('speciality') || '';
-
-  const handleSearch = (value) => {
-    setSearched(true);
-    setSearchParams(value ? { speciality: value } : {});
-  };
 
   const results = speciality
     ? doctors.filter((d) => d.speciality.toLowerCase().includes(speciality.toLowerCase()))
@@ -22,7 +18,7 @@ function InstantConsultation() {
 
   return (
     <div className="container consult">
-      <FindDoctorSearchIC onSearch={handleSearch} />
+      <FindDoctorSearchIC />
       {searched && (
         <>
           <h2 className="page-title" style={{ fontSize: '1.3rem' }}>

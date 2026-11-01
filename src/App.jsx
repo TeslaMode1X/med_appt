@@ -12,7 +12,7 @@ import ReportsLayout from './Components/ReportsLayout/ReportsLayout';
 import HealthBlog from './Components/HealthBlog';
 import NotFound from './Components/NotFound';
 
-// Vite injects the Pages sub-path ("/stayhealthy/") at build time.
+// Vite injects the Pages sub-path ("/med_appt/") at build time.
 const basename = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 function App() {

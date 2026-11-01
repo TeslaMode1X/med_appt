@@ -1,10 +1,13 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { specialities } from '../../data/doctors';
 
 // Search box with a suggestions dropdown. Typing filters the list of
-// specialities; picking one (or submitting the form) reports it to the parent
-// Booking Consultation screen, which then lists the matching doctors.
-function FindDoctorSearch({ onSearch, placeholder = 'Search doctors, clinics, hospitals, etc.' }) {
+// specialities; picking one (or submitting the form) navigates to the search
+// results route (e.g. /booking-consultation?speciality=Dentist), where the
+// Booking Consultation screen reads the query string and lists matching doctors.
+function FindDoctorSearch({ resultsPath = '/booking-consultation', placeholder = 'Search doctors, clinics, hospitals, etc.' }) {
+  const navigate = useNavigate();
   const [query, setQuery] = useState('');
   const [open, setOpen] = useState(false);
 
@@ -12,16 +15,19 @@ function FindDoctorSearch({ onSearch, placeholder = 'Search doctors, clinics, ho
     s.toLowerCase().includes(query.trim().toLowerCase())
   );
 
+  const goToResults = (speciality) => {
+    setOpen(false);
+    navigate(`${resultsPath}?speciality=${encodeURIComponent(speciality)}`);
+  };
+
   const choose = (speciality) => {
     setQuery(speciality);
-    setOpen(false);
-    onSearch(speciality);
+    goToResults(speciality);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setOpen(false);
-    onSearch(query.trim());
+    goToResults(query.trim());
   };
 
   return (

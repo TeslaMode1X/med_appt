@@ -8,16 +8,18 @@ const spaRoutesOverRootFiles = () => ({
   name: 'spa-routes-over-root-files',
   configureServer(server) {
     server.middlewares.use((req, _res, next) => {
-      if (/^\/stayhealthy\/(login|register|build)\/?$/.test(req.url)) {
-        req.url = '/stayhealthy/';
+      if (/^\/med_appt\/(login|register|build)\/?$/.test(req.url)) {
+        req.url = '/med_appt/';
       }
       next();
     });
   },
 });
 
-// `base` must match the GitHub Pages sub-path: https://<user>.github.io/stayhealthy/
+// `base` must match the GitHub Pages sub-path: https://<user>.github.io/med_appt/
+// The production build goes to server/build so the Express server can serve it.
 export default defineConfig({
   plugins: [react(), spaRoutesOverRootFiles()],
-  base: '/stayhealthy/',
+  base: '/med_appt/',
+  build: { outDir: 'server/build', emptyOutDir: true },
 });
